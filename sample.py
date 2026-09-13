@@ -9,11 +9,16 @@ connection_string = (
     "TrustServerCertificate=yes;"  # 開発環境などで必要に応じて設定
 )
 
+sql_string = """
+SELECT TOP 10 * 
+FROM YourTableName
+"""
+
 try:
     conn = connect(connection_string)
     cursor = conn.cursor()
 
-    cursor.execute("SELECT TOP 10 * FROM YourTableName")
+    cursor.execute(sql_string)
     rows = cursor.fetchall()
     for row in rows:
         print(row)
